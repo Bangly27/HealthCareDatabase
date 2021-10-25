@@ -51,4 +51,37 @@
 			$stmt->store_result();
 			return $stmt->num_rows > 0;
 		}
+		
+		public function addWeight($weight, $date, $time, $food, $other_info, $username, $userid){
+			$stmt = $this->con->prepare("INSERT INTO `data_weight` (`id`, `weight`, `date`, `time`, `food`, `other_info`, `user_name`, `user_id`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?);");
+			$stmt->bind_param("sssssss",$weight, $date, $time, $food, $other_info, $username, $userid);
+			
+			if($stmt->execute()){
+				return 1;
+			}else{
+				return 2;
+			}
+		}
+		
+		public function addTemperature($temperature, $date, $time, $food, $other_info, $username, $userid){
+			$stmt = $this->con->prepare("INSERT INTO `data_temperature` (`id`, `temperature`, `date`, `time`, `food`, `other_info`, `user_name`, `user_id`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?);");
+			$stmt->bind_param("sssssss",$temperature, $date, $time, $food, $other_info, $username, $userid);
+			
+			if($stmt->execute()){
+				return 1;
+			}else{
+				return 2;
+			}
+		}
+		
+		public function addPressure($pressure_diastole, $pressure_systole, $pulse, $date, $time, $food, $other_info, $username, $userid){
+			$stmt = $this->con->prepare("INSERT INTO `data_pressure` (`id`, `pressure_diastole`, `pressure_systole`, `pulse`, `date`, `time`, `food`, `other_info`, `user_name`, `user_id`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+			$stmt->bind_param("sssssssss",$pressure_diastole, $pressure_systole, $pulse, $date, $time, $food, $other_info, $username, $userid);
+			
+			if($stmt->execute()){
+				return 1;
+			}else{
+				return 2;
+			}
+		}
 	}
