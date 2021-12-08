@@ -84,4 +84,15 @@
 				return 2;
 			}
 		}
+		
+		public function addGlucose($glucose, $date, $time, $food, $other_info, $username, $userid){
+			$stmt = $this->con->prepare("INSERT INTO `data_glucose` (`id`, `glucose`, `date`, `time`, `food`, `other_info`, `user_name`, `user_id`) VALUES (NULL, ?, ?, ?, ?, ?, ?, ?);");
+			$stmt->bind_param("sssssss",$glucose, $date, $time, $food, $other_info, $username, $userid);
+			
+			if($stmt->execute()){
+				return 1;
+			}else{
+				return 2;
+			}
+		}
 	}

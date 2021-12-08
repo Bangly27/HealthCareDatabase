@@ -7,7 +7,7 @@
 			$user_name = mysqli_real_escape_string($con, $_POST['user_name']);
 			$user_id = mysqli_real_escape_string($con, $_POST['user_id']);
 			
-			$sql = "SELECT weight, date, time, food, other_info FROM data_weight WHERE user_name = $user_name AND user_id = $user_id";
+			$sql = "SELECT weight, date, time, food, other_info FROM data_weight WHERE user_id = $user_id";
 			
 			$result = mysqli_query($con, $sql);
 	
@@ -17,7 +17,8 @@
 	
 			mysqli_close($con);
 	
-			$response = $weight;
+			$response['error'] = false;
+			$response['message'] = $weight;
 			
 		}else{
 		$response['error'] = true;
